@@ -20,10 +20,10 @@
     </form>
 
     <div class="table">
-        <? for ($i=1; $i <= $col; $i++) : ?>
+        <? for ($i=1; $i <= $row; $i++) : ?>
             <div class="table__row">
 
-                <? for ($k=1; $k <= $row; $k++) : ?>
+                <? for ($k=1; $k <= $col; $k++) : ?>
                     <div class="table__col">
                         
                         <?= $i * $k?>
