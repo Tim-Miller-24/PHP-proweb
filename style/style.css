@@ -412,7 +412,7 @@ textarea.form__input {
 .comments__item-time {
     color: #fff;
     margin-top: 20px;
-    font-size: 20px;
+    font-size: 15px;
 }
 .user {
     max-width: 300px;
@@ -521,4 +521,131 @@ textarea.form__input {
     background: green;
     padding: 10px 15px;
     border-radius: 8px;
+}
+
+.userInfo__img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 1px solid white;
+}
+
+.addPhoto {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.addPhoto__title {
+    font-size: 20px;
+    color: white;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    font-weight: 400;
+}
+
+.addPhoto button {
+    margin-top: 20px;
+}
+
+.photos {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 30px;
+}
+
+.photos__item {
+    width: 100%;
+    height: 200px;
+    position: relative;
+}
+
+.photos__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.photos__radio {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid white;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    transition: 0.5s;
+}
+
+.photos__radio i {
+    transition: 0.5s;
+    opacity: 0;
+}
+
+input[name="ava"] {
+    display: none;
+}
+
+input[name="ava"]:checked ~ .photos__radio i {
+    opacity: 1;
+}
+
+input[name="ava"]:checked ~ .photos__radio {
+    background: green;
+}
+
+.photos__btn {
+    grid-column: span 4;
+}
+
+.setname {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid white;
+    border-radius: 10px;
+}
+
+.setname input {
+    display: block;
+    max-width: 300px;
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    border: 1px solid white;
+    outline: none;
+    font-size: 18px;
+    background: transparent;
+    color: white;
+}
+
+.setname legend {
+    font-size: 20px;
+    color: white;
+    padding: 10px;
+    display: inline-block;
+}
+
+.photos__del {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid white;
+    background: red;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

@@ -1,10 +1,10 @@
 <?
-require_once "db.php";
-
-$userAuth = userAuth($_POST["login"], $_POST["pass"]);
-
+include_once("./db.php");
+$userAuth = userAuth($_POST['login'], $_POST['pass']);
+// var_dump($userAuth);
 if ($userAuth) {
-    header('Location:/');
+    header("Location:/");
 } else {
-    header('Location:/?route=login&error=1');
+    header("Location:/?route=login&error=1");
 }
+

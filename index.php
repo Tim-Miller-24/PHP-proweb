@@ -1,13 +1,7 @@
-<? 
-require_once "./includes/db.php";
-
-require_once "./includes/function.php";
-
-require_once "./includes/header.php";
-
-require_once "./includes/aside.php";
-
-require_once "./page/$route.php";
-
-require_once "./includes/footer.php";
-?>
+<?
+include_once("./includes/db.php");
+include_once("./includes/function.php");
+include_once("./includes/header.php");
+include_once("./includes/aside.php");
+include_once("./page/$route.php");
+include_once("./includes/footer.php");
