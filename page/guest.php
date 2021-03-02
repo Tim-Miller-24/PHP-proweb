@@ -3,11 +3,12 @@
         <h2 class="head__title"><?= $title ?></h2>
         <p class="head__date"><?= $date ?></p>
     </section>
-    <? if(isset($_SESSION["id"])) : ?>
+    <? if(isset($_SESSION["id"]) && !isset($_GET['edit'])) : ?>
+    
         <form action="./includes/guets-book.php" class="form" method="post">
             <label class="form__label">
                 <span class="form__text"><?= $userInfo['user_name']?></span>
-                <input type="text" class="form__input" name="name" value="<?= $userInfo['user_name']?>">
+                <input type="text" class="form__input" name="name"  value="<?= $userInfo['user_name']?>">
             </label>
             <label class="form__label">
                 <span class="form__text">Оставьте отзыв</span>
@@ -16,6 +17,19 @@
             <button class="form__btn">Отправить</button>
         </form>
 
+    <? elseif($_GET['edit']) : ?>
+        <form action="./includes/user-edit-comment.php" class="form" method="post">
+            <input type="hidden" name="commentId" value="<?= $_GET['edit']?>">
+            <label class="form__label">
+                <span class="form__text"><?= $userInfo['user_name']?></span>
+                <input type="text" class="form__input" name="name"  value="<?= $userInfo['user_name']?>">
+            </label>
+            <label class="form__label">
+                <span class="form__text"></span>
+                <textarea class="form__input" name="descr"><?= userGetCommentInfoById($_GET['edit'])['user_comment'];?></textarea>
+            </label>
+            <button class="form__btn">Отправить</button>
+        </form>
     <? else : ?>
         <p>Чтобы оставить отзыв, нужно войти в аккаунт.</p>
     <? endif; ?>
@@ -33,7 +47,7 @@
 
                 <? if ($value['user_id'] == $_SESSION['id'] && isset($_SESSION['id'])) : ?>
                 <div class="comments__footer">
-                    <a href="./includes/user-edit-comment.php?edit=<?= $value["comment_id"]?>" class="comments__footer-link"><i class="fal fa-edit"></i></a>
+                    <a href="?route=guest&edit=<?= $value["comment_id"]?>" class="comments__footer-link"><i class="fal fa-edit"></i></a>
                     <a href="./includes/user-del-comment.php?trash=<?= $value["comment_id"]?>" class="comments__footer-link"><i class="fal fa-trash"></i></a>
                 </div>
                 <? endif; ?>

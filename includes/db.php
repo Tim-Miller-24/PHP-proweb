@@ -146,10 +146,21 @@ function userCommentInfo() {
     session_start();
     $userId = $_SESSION["id"];
     $db = db();
-    $query = "SELECT comment_id, usercomment.user_id, user_comment, DATE_FORMAT(time, '%d.%m.%Y %H:%i')as time, users.user_name, images.img_path FROM usercomment INNER JOIN users ON users.user_id=usercomment.user_id INNER JOIN images ON images.user_id=usercomment.user_id";
+    $query = "SELECT comment_id, usercomment.user_id, user_comment, DATE_FORMAT(time, '%d.%m.%Y %H:%i')as time, users.user_name, images.img_path FROM usercomment INNER JOIN users ON users.user_id=usercomment.user_id INNER JOIN images ON images.user_id=usercomment.user_id AND img_select=1";
     $pdoStat = $db->prepare($query);
     $pdoStat->execute([]);
     $result = $pdoStat->fetchAll(PDO::FETCH_ASSOC);
+    return $result;
+}
+
+function userGetCommentInfoById($commentId) {
+    session_start();
+    $userId = $_SESSION["id"];
+    $db = db();
+    $query = "SELECT * FROM usercomment WHERE comment_id=?";
+    $pdoStat = $db->prepare($query);
+    $pdoStat->execute([$commentId]);
+    $result = $pdoStat->fetch(PDO::FETCH_ASSOC);
     return $result;
 }
 
@@ -163,12 +174,12 @@ function deleteComment($commentId) {
     return $result;
 }
 
-function editComment($commentId) {
+function editComment($userComment, $commentId) {
     session_start();
     $userId = $_SESSION["id"];
     $db = db();
-    $query = "UPDATE usercomment SET user_comment=?";
+    $query = "UPDATE usercomment SET user_comment=? WHERE comment_id=?";
     $pdoStat = $db->prepare($query);
-    $result = $pdoStat->execute([$commentId]);
+    $result = $pdoStat->execute([$userComment, $commentId]);
     return $result;
 }
